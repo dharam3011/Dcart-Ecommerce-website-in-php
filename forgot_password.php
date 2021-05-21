@@ -1,0 +1,114 @@
+<?php 
+
+// database connection
+include 'conn.php';
+
+// connect some function
+include 'function.php';
+
+// SMTP mail connection
+use PHPMailer\phpmailer\PHPMailer;
+
+require_once 'PHPMailer/phpmailer/Exception.php';
+require_once 'PHPMailer/phpmailer/PHPMailer.php';
+require_once 'PHPMailer/phpmailer/SMTP.php';
+
+$msg ='';
+
+if (isset($_POST['submit'])) 
+{
+    $otp = rand(111111,999999);
+
+    $_SESSION['otp'] = $otp;
+
+    $email = get_safe_value($_POST['email']);
+
+    $_SESSION['verify_email_user'] = base64_encode($email);
+
+    $mail = new PHPMailer(true);
+
+    try{
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'dcart0509@gmail.com';
+        $mail->Password = '@Shopping@0509';
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port = '587';
+
+        $mail->setFrom('dcart0509@gmal.com');
+        $mail->addAddress($email);
+
+        $mail->isHTML(true);
+        $mail->Subject = 'Dcart account varification';
+        $mail->Body = "To authenticate, please use the following One Time Password(OTP) :
+                                                <h3> $otp </h3>
+                                                Don't share this OTP with anyone. Our customer service tame  will never ask you for your password, OTP, any other details.<br>
+                                                We hope to dee you again soon.";
+
+        $mail->send();
+        echo "<script>alert('Please check your email and varify your account')</script>";
+        $pg = 'forgot_password';
+        $href = "verify.php?pg=".urlencode(base64_encode($pg));
+        redirect($href);
+    }
+    catch (Exception $e){
+        echo "<script>alert('".$e->getMessage()."')</script>";
+    }
+}
+?>
+<!doctype html>
+<html lang="en">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+<!-- External CSS -->
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/pushy.css">
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+<title><?php echo 'Resend Mail'.WEBSITE_NAME?></title>
+</head>
+<body>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="text-center">
+            <?php include '../logo.php';?>
+        </div>
+        <div class="col-sm-4 offset-4 p-4 border rounded-3">
+        
+        <div>
+            <h3>Forgot Password</h3>
+            <h5><span class="text-danger"><?php  echo $msg ?></span></h5>
+        </div>
+            <form method="post">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Email</label>
+                    <input type="email" name="email" class="form-control" placeholder="Enter valid Email">
+                </div>
+
+                <button type="submit" name='submit' class="btn btn-primary createBtn">Send OTP</button>
+            </form>
+            
+        </div>
+    </div>
+</div>
+
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+
+<!-- Option 2: Separate Popper and Bootstrap JS -->
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
+
+</body>
+</html>
