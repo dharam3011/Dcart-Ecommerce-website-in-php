@@ -1,1 +1,3 @@
-# Dcart-Ecommerce-website-in-php
+<?php 
+  echo "<script>window.location.href='index.php'</script>"
+?>
