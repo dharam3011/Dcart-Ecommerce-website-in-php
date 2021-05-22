@@ -18,5 +18,5 @@
     define('UPLOAD_IMAGE',$_SERVER['DOCUMENT_ROOT'].'/Dcart/images');
 
     // Constant for images path (display path)
-    define('DISPLAY_IMAGE',$_SERVER['DOCUMENT_ROOT'].'/Dcart/images');
+    define('DISPLAY_IMAGE','http://localhost/Dcart/images');
 ?>
