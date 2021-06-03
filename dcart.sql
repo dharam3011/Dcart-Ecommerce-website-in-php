@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 21, 2021 at 04:09 PM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 7.3.27
+-- Generation Time: Jun 03, 2021 at 07:34 AM
+-- Server version: 10.4.19-MariaDB
+-- PHP Version: 7.4.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -144,32 +144,6 @@ CREATE TABLE `contact_us` (
 INSERT INTO `contact_us` (`contact_id`, `name`, `email`, `mobile`, `message`, `status`, `added_on`) VALUES
 (1, 'user', 'user@gmail.com', '9876543210', 'hello I am user', 1, '2021-04-15 06:55:38'),
 (2, 'user2', 'user2@gmail.com', '9876543210', 'this is query message please solve it', 1, '2021-05-20 06:39:27');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `demo2`
---
-
-CREATE TABLE `demo2` (
-  `id` bigint(50) NOT NULL,
-  `Enrollment` bigint(20) NOT NULL,
-  `FirstName` varchar(11) NOT NULL,
-  `LastName` varchar(11) NOT NULL,
-  `samester` int(11) NOT NULL,
-  `Contactno` int(15) NOT NULL,
-  `created_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `demo2`
---
-
-INSERT INTO `demo2` (`id`, `Enrollment`, `FirstName`, `LastName`, `samester`, `Contactno`, `created_at`) VALUES
-(1, 180770107223, 'Dharam', 'Sojitra', 6, 987654321, '2021-04-30 11:45:34'),
-(3, 0, '', '', 0, 0, '2021-04-30 11:41:07'),
-(4, 0, '', '', 0, 0, '2018-12-05 12:39:16'),
-(5, 0, '', '', 0, 0, '2021-04-30 11:43:40');
 
 -- --------------------------------------------------------
 
@@ -494,12 +468,6 @@ ALTER TABLE `contact_us`
   ADD PRIMARY KEY (`contact_id`);
 
 --
--- Indexes for table `demo2`
---
-ALTER TABLE `demo2`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `order`
 --
 ALTER TABLE `order`
@@ -576,12 +544,6 @@ ALTER TABLE `category`
 --
 ALTER TABLE `contact_us`
   MODIFY `contact_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `demo2`
---
-ALTER TABLE `demo2`
-  MODIFY `id` bigint(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `order`
