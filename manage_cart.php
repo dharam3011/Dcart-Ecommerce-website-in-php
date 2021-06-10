@@ -169,7 +169,7 @@ else
 
                 if (in_array($product_id,$cart_product) ) 
                 {
-                    echo "Product alredy adde!";
+                    echo "Product alredy addeds!";
                 }
                 else
                 {
