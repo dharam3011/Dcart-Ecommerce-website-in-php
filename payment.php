@@ -242,7 +242,7 @@ if (!isset($_SESSION['cart']) && !isset($value['cart_id']))
     
     <!-- create razorpay payment getway order id -->
     <?php 
-        $api = new Api('rzp_test_J5REH0O897SkxA', 'NQ2tbGXlPBbj3NB8AcXhlPX9');
+        $api = new Api('your Key_id', 'your Secrate Key');
             $order  = $api->order->create([
                 'receipt'         => 'order_rcptid_11',
                 'amount'          => $order_total_price*100, // amount in the smallest currency unit
@@ -312,7 +312,7 @@ if (!isset($_SESSION['cart']) && !isset($value['cart_id']))
         if (payment_type == 'paymentGetway') 
         {
             var options = {
-                "key": "rzp_test_J5REH0O897SkxA", 
+                "key": "Your Key_id", 
                 "amount": grad_total_price*100, 
                 "currency": "INR",
                 "name": "Dcart.com",

@@ -31,12 +31,12 @@ if (isset($_POST['submit']))
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Username = 'dcart0509@gmail.com';
-        $mail->Password = '@Shopping@0509';
+        $mail->Username = 'youremail@gmail.com';
+        $mail->Password = 'youremail password';
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = '587';
 
-        $mail->setFrom('dcart0509@gmal.com');
+        $mail->setFrom('youremail@gmal.com');
         $mail->addAddress($email);
 
         $mail->isHTML(true);

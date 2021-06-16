@@ -29,8 +29,8 @@
             $mail->isSMTP();
             $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
-            $mail->Username = 'dcart0509@gmail.com';
-            $mail->Password = '@Shopping@0509';
+            $mail->Username = 'Your@email.com';
+            $mail->Password = 'your email password';    
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port = '587';
 
